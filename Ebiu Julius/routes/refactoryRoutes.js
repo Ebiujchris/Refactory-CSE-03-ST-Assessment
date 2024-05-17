@@ -1,99 +1,30 @@
-//Dependencies
 const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
+const router = express.Router();
+
+//import model
+const  Refactory= require("../models/refactoryModel");
 
 
-
-
-require("dotenv").config();
-
-
-const port = 3000;
-
-//for importing routes
-const refactoryRoutes = require("./");
-
-//Instantiations
-const app = express();
-
- //Configurations
-mongoose.connect(process.env.DATABASE, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+router.get("/registerStudent",(req, res)=>{
+  res.render("studentForm");
 });
-mongoose.connection
-  .once("open", () => {
-    console.log("Mongoose connection open");
-  })
-  .on("error", (err) => {
-    console.error(`Connection error: ${err.message}`);
-  });
 
-
-app.set("view engine", "pug"); //setting engine to pug
-app.set("views", path.join(__dirname, "views")); //specify the directory where the views are found
-
-// Multer configuration for file upload
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: function(req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//post route 
+//using the async function
+router.post("/registerStudent", async(req, res)=>{
+  try{
+    const student = new Refactory(req.body)
+    console.log(student);
+    await student.save();
+    res.redirect("/registerStudent");
+    
+  } catch (error) {
+     res.status(400).send("error, student not registered")
+     console.log("Error registering ..",error);
   }
-});
-
-const upload = multer({
-  storage: storage
-}).single('dollImage');
-
-// Serve static files
-app.use(express.static('public'));
-
-app.get('/store', (req, res) => {
-  res.sendFile(path.join(__dirname, 'store'));
-});
-
-// Handle file upload
-app.post('/store', (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      console.error(err);
-      res.sendStatus(500);
-    } else {
-      res.redirect('/store');
-    }
-  });
+ 
 });
 
 
-//Middleware
-app.use(express.static(path.join(__dirname, "public"))); //set for directory static files
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
-
-//expression session config
-app.use(expressSession);
-app.use(passport.initialize());
-app.use(passport.session());
-
-//passport config
-passport.use(RegisterStaff.createStrategy());
-passport.serializeUser(RegisterStaff.serializeUser());
-passport.deserializeUser(RegisterStaff.deserializeUser());
-
-//use imported routes
-app.use("/", registrationRoutes);
-app.use("/", contactRoutes);
-app.use("/", createAccountRoutes);
-app.use("/",authenticationRoutes);
-
-//For invalid routes
-app.get("*", (req, res) => {
-  res.send("404! This is an invalid URL");
-});
-
-
-//Bootstrpping the server
-//Always the last line in your code
-app.listen(port, () => console.log(`listening on port ${port}`));
+module.exports = router;

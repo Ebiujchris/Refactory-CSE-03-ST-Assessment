@@ -1,60 +1,77 @@
+/* new */
 body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.form-wrapper {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 990px;
+  margin: auto;
 }
 
-.image-container {
+.image, .form-side {
   flex: 1;
-  padding-right: 20px;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc; /* Border around the image container */
+  border-radius: 0; /* Square corners */
+}
+
+.image img {
+  max-width: 100%;
+}
+
+.form-side {
+  margin-left: 20px;
 }
 
 form {
-  flex: 2;
   display: flex;
   flex-wrap: wrap;
 }
 
+.form-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .label-input-group {
-  width: 50%;
-  padding: 5px;
-  box-sizing: border-box;
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
 }
 
 .label-input-group label {
-  display: block;
   margin-bottom: 5px;
+  color: green; /* Set label color to green */
 }
 
 .label-input-group input,
-.label-input-group select,
-.label-input-group textarea {
-  width: calc(100% - 10px);
-  padding: 5px;
-  margin-bottom: 10px;
+.label-input-group select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+   /* Set input fields background color to light green */
+  border-color: green; /* Set input fields text color to green */
+  
 }
 
 .gender-selection {
   display: flex;
   align-items: center;
-  margin-top: 5px;
 }
 
 .gender-option {
@@ -81,12 +98,20 @@ form {
   background-color: darkblue;
 }
 
-button {
+.submit-row {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-form .label-input-group:nth-child(odd) {
-  clear: both;
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0C5F52;
+  color: white;
+  cursor: pointer;
+  width: 30%;
 }
+
+

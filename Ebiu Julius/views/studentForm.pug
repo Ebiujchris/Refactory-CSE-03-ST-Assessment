@@ -1,0 +1,71 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Student Application Form
+  link(rel='stylesheet' href='/style.css')
+.container
+  .image
+    img(src='/images/1. Form on load.PNG' alt='Form Image')
+  .form-side
+    h1 STUDENT APPLICATION FORM
+    form#student-form(action="/registerStudent" method="post" onsubmit='return validateForm()')
+      .form-group
+        .label-input-group
+          label(for='firstName') Sirname:
+          input#firstName(type='text')
+        .label-input-group
+          label(for='lastName') Given name:
+          input#lastName(type='text')
+      .form-group
+        .label-input-group
+          label(for='course') Course:
+          select#course
+            option(value='Certificate in Health Science') Certificate in Health Science
+            option(value='Certificate in Applied Technology') Certificate in Applied Technology
+            option(value='Bachelor of Information Technology') Bachelor of Information Technology
+            option(value='Bachelors in Business Technology') Bachelors in Business Technology
+            option(value='Master of Public Health') Master of Public Health
+
+        .label-input-group
+          label(for='intake') Enty Schema:
+          select#intake
+            option(value='January Intake') January Intake
+            option(value='May Intake') May Intake
+            option(value='August Intake') August Intake
+      .form-group
+        .label-input-group
+          label(for='entrySchema') Intake:
+          select#entrySchema
+            option(value='A-Level certificate') A-Level certificate
+            option(value='Adult/Mature Learning') Adult/Mature Learning
+            option(value='Certificate') Certificate
+            option(value='Diploma') Diploma
+            option(value='Bachelors') Bachelors
+        .label-input-group
+          label(for='sponsorship') Sponsorship
+          input#sponsorship(type='text')
+      .form-group
+        .label-input-group
+          label(for='dob') Date of Birth:
+          input#dob(type='date')
+        .label-input-group
+          label(for='residence') Residence
+          input#dateJoined(type='text')
+      .form-group
+
+        div
+          .label-input-group
+            label(for='gender') Gender:
+            .gender-selection
+              label.gender-option(for='male')
+                input#male(type='radio' name='gender' value='male')
+                span.gender-circle
+                |                                 Male
+              label.gender-option(for='female')
+                input#female(type='radio' name='gender' value='female')
+                span.gender-circle
+                |                                 Female
+      .submit-row
+        button(type='submit') Submit
+script(src='script.js')
