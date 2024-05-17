@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.image-container {
+  flex: 1;
+  padding-right: 20px;
+}
+
+form {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.label-input-group {
+  width: 50%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label-input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.label-input-group input,
+.label-input-group select,
+.label-input-group textarea {
+  width: calc(100% - 10px);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.gender-selection {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.gender-option {
+  position: relative;
+  margin-right: 20px;
+}
+
+.gender-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gender-circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid lightblue;
+  background-color: transparent;
+}
+
+.gender-option input[type="radio"]:checked + .gender-circle {
+  background-color: darkblue;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+form .label-input-group:nth-child(odd) {
+  clear: both;
+}
